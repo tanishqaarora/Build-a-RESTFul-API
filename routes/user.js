@@ -19,14 +19,29 @@ router.post('/post', async (req, res) => {
 // Getting all the users
 router.get('/getAllUsers', async (req, res) => {
 
-    const getUsers = await User.find({});
-    res.status(200).send(getUsers);
+    try{
+        const users = await User.find({});
+        res.status(200).send(users);
+    }
+    catch(error){
+        res.status(500).json({ message: error.message});
+    }
 
 })
 
 
 // Get user by id
+router.get('/getUser/:id', async (req, res) => {
 
+    try{
+        const user = await User.findById(req.params.id);
+        res.status(200).send(user);
+    }
+    catch(error){
+        res.status(500).json({ message: error.message});
+       
+    }
+})
 
 // Update user by id
 
