@@ -17,8 +17,16 @@ router.post('/post', async (req, res) => {
 })
 
 // Getting all the users
+router.get('/getAllUsers', async (req, res) => {
+
+    const getUsers = await User.find({});
+    res.status(200).send(getUsers);
+
+})
+
 
 // Get user by id
+
 
 // Update user by id
 
