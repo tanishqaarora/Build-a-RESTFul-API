@@ -44,6 +44,20 @@ router.get('/getUser/:id', async (req, res) => {
 })
 
 // Update user by id
+router.put('/update/:id', async(req, res) => {
+
+    try{
+        const id = req.params.id;
+        const updatedData = req.body;
+        const options = { new: true };
+
+        const user = await User.findByIdAndUpdate(id, updatedData, options);
+        res.status(200).send(user);
+    }
+    catch(error){
+        res.status(400).send( { message: error.message});
+    }
+})
 
 // Delete user by id
 
